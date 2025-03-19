@@ -1,30 +1,34 @@
 # Blinkr
+
 Jetson Nano AI Blink Detection and Reminder Project
 
 ⭐️ Winner of the NVIDIA Jetson AI Specialist Award and NVIDIA Project of the Month ⭐️
 
-![ScreenShot](https://i.ibb.co/pQpCdX8/Are-tch-2.png)
+![Blinker Keeping you safe while on the computer](https://i.ibb.co/pQpCdX8/Are-tch-2.png)
 
 ## Inspiration for building Blinkr
+
 As many studies show, while looking at a computer screen our blink rate reduces. We usually do not realize this. Not blinking can lead to unwanted side affects that we want to avoid. I wanted to find a way to make ourselves blink more while using the computer.
 
-![ScreenShot](https://i.ibb.co/f2XzGk2/Are-tch-3.png)
+![Being on the computer signifcantly Reduces our blink rate](https://i.ibb.co/f2XzGk2/Are-tch-3.png)
 
 ## How Blinkr aims to solve this problem
+
 Blinkr is a device that utlizes [AI (Artifical Intellegence)](https://en.wikipedia.org/wiki/Artificial_intelligence) to detect blinks. Blinkr uses a camera that faces the user. Blinkr counts the number of times a user blinks and warns them if they are not blinking enough. An average adult blinks 10-20 times a minute. Blinkr looks at how much you are blinking per minute and informs you on whether you should blink or not.
 
-![ScreenShot](https://i.ibb.co/DCbsY5Z/Are-tch-5.png)
+![Blinkr uses AI](https://i.ibb.co/DCbsY5Z/Are-tch-5.png)
 
 ## How does Blinkr work
+
 The Blinkr devices utilizes the [NVIDIA Jetson Nano AI Computer](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-nano/). The NVIDIA Jetson Nano is a fast single board computer meant for AI. My code runs on this computer. Additionally Blinkr uses a camera, speaker, as well as screen.
 
-![ScreenShot](https://i.ibb.co/r6ZHpgQ/Are-tch-6.png)
+![Jetson Nano AI computer](https://i.ibb.co/r6ZHpgQ/Are-tch-6.png)
 
 ## Make your own Blinkr
+
 Recreating your own Blinkr device is easy! Using the code repository and the instructions below you can make your own Blinkr and blink more. Follow the steps belowed carefully and you'll be on your way. Below is a picture of a research paper that explains how to detect blinks:
 
-![ScreenShot](https://i.ibb.co/4RY4cRH/Screen-Shot-2020-11-23-at-5-35-36-PM.png)
-###### Real-Time Eye Blink Detection using Facial Landmarks-Tereza Soukupova and Jan Cech-Center for Machine Perception, Department of Cybernetics-Faculty of Electrical Engineering, Czech Technical University in Prague
+![Real-Time Eye Blink Detection using Facial Landmarks-Tereza Soukupova and Jan Cech-Center for Machine Perception, Department of Cybernetics-Faculty of Electrical Engineering, Czech Technical University in Prague](https://i.ibb.co/4RY4cRH/Screen-Shot-2020-11-23-at-5-35-36-PM.png)
 
 ***Here we cam see how the EAR (Eye Aspect Ratio) changes when someone blinks. Using this we can detect blinks.***
 
@@ -45,20 +49,26 @@ Recreating your own Blinkr device is easy! Using the code repository and the ins
 7. [Speaker](https://www.amazon.com/HONKYOB-Speaker-Computer-Multimedia-Notebook/dp/B075M7FHM1/ref=sr_1_3?dchild=1&keywords=usb+mini+speaker&qid=1606240300&sr=8-3) -- You will need a USB Speaker for the audible blink reminder.
 
 ## Setting up the NVIDIA Jetson Nano 2GB Developer Kit
+
 Go to this [link](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-nano/education-projects/) and follow the steps to get your NVIDIA Jetson Nano working. After following all of these steps and flashing the OS onto your Nano continue on below.
 
 ## Connecting the Camera to the Jetson Nano
 
 The web cam can be connect via USB. To connect the Raspberry Pi Camera V2 to the Jetson Nano, follow this [video](https://www.youtube.com/watch?v=dHvb225Pw1s). If you are using a Web Cam comment out this line:
+
 ```python
   cam = 'nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=2464, format=NV12, framerate=21/1 ! nvvidconv flip-method='+flip+' ! video/x-raw, width='+width+', height='+height+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
 ```
+
 If you are using the Raspberry Pi Camera V2 then comment out this line:
+
 ```python
   cam = cv2.VideoCapture(0)
 ```
+
 Also add a height, width and flip variable above. I reccomend the width and height to be (you will have to test the flip and see what works):
-```
+
+```plaintext
   width = 320
   height = 240
   flip = 1
@@ -75,10 +85,13 @@ Before installing python packages you will need to download the "shape_predictor
 To download it visit this [link](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2).
 
 To start installing packages via pip you will have to run this line in the LX Terminal:
+
 ```python
   sudo apt-get install python3-pip
 ```
+
 These are the packages used in the Python script:
+
 ```python
   from scipy.spatial import distance
   from gtts import gTTS
@@ -91,6 +104,7 @@ These are the packages used in the Python script:
 ```
 
 You can download these packages via pip using the [requirements.txt](https://github.com/AdritRao/Blinkr/blob/main/requirements.txt) file:
+
 ```python
   pip3 install -r requirements.txt
 ```
@@ -139,11 +153,11 @@ Every one minute the program will restart via this line of code:
 ```
 
 ## Final Step - Running the code on the Jetson Nano
+
 Download the code from this Repo and save it onto your Jetson Nano. Open the LX Terminal and then navigate to the folder. Then write this to see the code in action:
-```
+
+```bash
   python3 blinkr.py
 ```
+
 I hope you enjoy using Blinkr! 👁
-
-
-
